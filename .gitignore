@@ -35,3 +35,13 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+#Other
+node_modules
+npm-debug.log
+.DS_Store
+.env
+bundle.js
+bundle.js.map
+webpackStyle.css
+webpackStyle.css.map
