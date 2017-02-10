@@ -15,6 +15,7 @@ nums2 = [3, 4]
 The median is (2 + 3)/2 = 2.5
 */
 
+//NEEDS IMPROVEMENT
 function findMedianSortedArrays(nums1, nums2) {
     let sorted = nums1.concat(nums2);
     sorted.sort((a,b) => a-b);
