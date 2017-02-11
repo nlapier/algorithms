@@ -1,4 +1,4 @@
-function plainFib (num, start){
+function plainFib(num, start){
   	const init = start || 0;
 
 	let sequence = [init, 1];
@@ -6,7 +6,7 @@ function plainFib (num, start){
 	  const next = sequence[0] + sequence[1];
 	  sequence = [sequence[1], next];
 	}
-	
+
 	return sequence[1];
 }
 
