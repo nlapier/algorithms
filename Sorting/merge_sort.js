@@ -1,27 +1,23 @@
-function mergeSort(arr){
-  //Returns sorted array; does not mutate arguments
-	let output = [...arr];
+function compareAndMerge(arr1, arr2){
+	let output = [];
 
-	function moveElement(array, oldIndex, newIndex){
-		let element = array.splice(oldIndex, 1)[0];
-		array.splice(newIndex+1, 0, element);
-	} 
-
-	function findCorrectIndex(array, currentIndex){
-	  let element = array[currentIndex];
-		for (let j = currentIndex-2; j >= 0; j--){
-			if (element > array[j]){
-				return j;
-			}
+	while ((arr1.length + arr2.length) > 0){
+		if (arr1[0] < arr2[0] || arr2[0] === undefined){
+			output.push(arr1.shift());
+		} else {
+		  output.push(arr2.shift());
 		}
 	}
-
-	for(let i = 1; i < output.length; i++){
-		if (output[i] < output[i-1]){
-			let newIndex = findCorrectIndex(output, i);
-			moveElement(output, i, newIndex);
-		}
-	}
-
 	return output;
+}
+
+function mergeSort(arr){
+	if (arr.length <= 1){
+		return arr;
+	}
+	const half = Math.ceil((arr.length)/2);
+	const arr1 = arr.slice(0, half);
+	const arr2 = arr.slice(half);
+
+	return compareAndMerge(mergeSort(arr1), mergeSort(arr2));
 }
