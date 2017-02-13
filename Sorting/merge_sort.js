@@ -5,7 +5,7 @@ function compareAndMerge(arr1, arr2){
 		if (arr1[0] < arr2[0] || arr2[0] === undefined){
 			output.push(arr1.shift());
 		} else {
-		  output.push(arr2.shift());
+			output.push(arr2.shift());
 		}
 	}
 	return output;
