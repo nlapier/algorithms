@@ -1,7 +1,12 @@
+const test =[9,4,233,10,22,100,4000];
+
 function radixSort(arr){
+	let sorting = true;
 	let maxNumberLength = 1;
+	let powerDigit = 0;
 	let output = [...arr];
 	let numberObj = {
+		"0": [],
 		"1": [],
 		"2": [],
 		"3": [],
@@ -11,29 +16,40 @@ function radixSort(arr){
 		"7": [],
 		"8": [],
 		"9": []
-	}
+	};
 
 
-	while (maxNumberLength){
-		let powerDigit = 0;
+	while (sorting){
+	  sorting = false;
 		for(let i = 0; i < arr.length; i++){
 			const currentNumber = arr[i].toString();
-			const currentDigit = currentDigit[powerDigit];
+			const currentDigit = currentNumber[powerDigit];
 			if (currentDigit >= 0){
 				numberObj[currentDigit].push(currentNumber);
-				currentNumber.length > maxNumberLength ? maxNumberLength = currentNumber.length : null;
+			  console.log("numberObj[currentDigit: ", numberObj[currentDigit]);
+
+				if(currentNumber.length > maxNumberLength){
+				  maxNumberLength = currentNumber.length;
+				  sorting = true;
+				}
 			} 
 		}
+		console.log(numberObj);
 
 		output = [];
-		for (powerArray in numberObj){
-			if (powerArray){
-				powerArray.map(function(){
-					output.push(powerArray.shift());
-				})
+		for (let powerArray in numberObj){
+		  let currentArray = numberObj[powerArray];
+			if (currentArray){
+			  console.log("powerArray: ", powerArray);
+				currentArray.map(function(){
+					output.push(currentArray.shift());
+				});
 			}
 		}
+		powerDigit++;
 	}
 
-	return output
+	return output;
 }
+
+console.log(radixSort(test))
