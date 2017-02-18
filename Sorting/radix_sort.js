@@ -21,6 +21,8 @@ function radixSort(arr){
 			const countIndex = Math.floor(arr[i]/power)%10;
 			count[countIndex]++;
 		}
+
+		
 	}
 
 	return output;
