@@ -1,5 +1,3 @@
-const test =[9,4,233,10,22,100,4000];
-
 function createArray(value, length){
 	let output = [];
 	for(let i = 1; i <= length; i++){
@@ -15,13 +13,13 @@ function countingSort(arr, base){
 
 	for(let i = 0; i < len; i++){
 		const countIndex = (Math.floor(arr[i]/base))%10;
-		count[countIndex]++;
+		countArray[countIndex]++;
 	}
-
-	for(let i = 0; i < 10; i++){
+	
+	for(let i = 1; i < 10; i++){
 		countArray[i] += countArray[i-1];
 	}
-
+	
 	let i = len-1;
 	while(i>=0){
 		const countIndex = (Math.floor(arr[i]/base))%10;
@@ -37,14 +35,11 @@ function countingSort(arr, base){
 function radixSort(arr){
 	let power = 1;
 	const largestNumberLength = Math.max(arr).toString.length;
-	const output = [...arr];
+	let output = [...arr];
 
-	while (largestNumberLength/power){
+	while (largestNumberLength/power > 0){
 		output = countingSort(output, power);
 		power*=10;
 	}
-
 	return output;
 }
-
-console.log(radixSort(test))
