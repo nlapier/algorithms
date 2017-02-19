@@ -1,3 +1,5 @@
+const test =[9,4,23,10,22,100, 50, 2453, 4432, 21, 500];
+
 function createArray(value, length){
 	let output = [];
 	for(let i = 1; i <= length; i++){
@@ -34,10 +36,10 @@ function countingSort(arr, base){
 
 function radixSort(arr){
 	let power = 1;
-	const largestNumberLength = Math.max(arr).toString.length;
+	const largestNumberLength = Math.max(...arr).toString().length;
 	let output = [...arr];
 
-	while (largestNumberLength/power > 0){
+	for(let i = largestNumberLength; i >= 0; i--){
 		output = countingSort(output, power);
 		power*=10;
 	}
