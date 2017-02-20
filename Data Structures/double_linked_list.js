@@ -28,19 +28,20 @@ DoubleLinkedList.prototype.add = function(value){
 
 DoubleLinkedList.prototype.getNodeAt = function(position){
 	const length = this.listLength;
+	let currentNode;
 
 	if (length === 0 || position < 1 || position > length){
 		throw Error("Requested node does not exist in this list");
 	}
 
 	if (length/position > 2){
-		let currentNode = this.head;
+		currentNode = this.head;
 		for(let i = 1; i < position; i++){
 			currentNode = currentNode.next;
 		}
 	} else {
-		let currentNode = this.tail;
-		for(let i = listLength; i > position; i--){
+		currentNode = this.tail;
+		for(let i = length; i > position; i--){
 			currentNode = currentNode.previous;
 		}
 	}
