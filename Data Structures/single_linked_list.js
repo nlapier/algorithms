@@ -1,4 +1,4 @@
-Function SingleLinkedList(){
+function SingleLinkedList(){
 	this.head = null,
 	this.listLength = 0
 }
@@ -15,7 +15,7 @@ SingleLinkedList.prototype.add = function(value){
 	if(!this.head){
 		this.head = node;
 	} else{
-		const currentNode = this.head;
+		let currentNode = this.head;
 		while(currentNode.next){
 			currentNode = currentNode.next;
 		}
@@ -23,11 +23,11 @@ SingleLinkedList.prototype.add = function(value){
 	}
 
 	this.listLength++;
-	
-	return node;
-}
 
-SingleLinkedList.prototype.getNodeAt = function(postition){
+	return node;
+};
+
+SingleLinkedList.prototype.getNodeAt = function(position){
 	const length = this.listLength;
 	let currentNode = this.head;
 
@@ -40,9 +40,9 @@ SingleLinkedList.prototype.getNodeAt = function(postition){
 	}
 
 	return currentNode;
-} 
+} ;
 
-SingleLinkedList.prototype.delete = function(position){
+SingleLinkedList.prototype.deleteNodeAt = function(position){
 	const length = this.listLength;
 	let currentNode = this.head,
 	deletedNode = null,
@@ -60,7 +60,7 @@ SingleLinkedList.prototype.delete = function(position){
 		return deletedNode;
 	}
 
-	for (let i = 2; i < position; i++){
+	for (let i = 1; i < position; i++){
 		previousNode = currentNode;
 		currentNode = currentNode.next;
 	}
@@ -71,4 +71,5 @@ SingleLinkedList.prototype.delete = function(position){
 	this.listLength--;
 
 	return deletedNode;
-}
+};
+
