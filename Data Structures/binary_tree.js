@@ -10,9 +10,7 @@ function Node(value){
 
 BinaryTree.prototype.add = function(value){
 	const node = new Node(value);
-	let parent = null,
-	childSide = null,
-	currentNode = null;
+	let parent, childSide, currentNode;
 
 	if (!this.root){
 		this.root = node;
@@ -34,6 +32,29 @@ BinaryTree.prototype.add = function(value){
 	return node;
 };
 
+BinaryTree.prototype.remove = function(value){
+	let currentNode = this.root,
+	grandParent, parent, childSide;
+	while (currentNode.value != value){
+		grandParent = parent;
+		parent = currentNode;
+		if (value > currentNode.value){
+			currentNode = currentNode.rightChild;
+			childSide = "rightChild";
+		} else {
+			currentNode = currentNode.leftChild;
+			childSide = "leftChild";
+		}
+	}
+
+	if (!currentNode.rightChild){
+		parent[childSide] = currentNode.rightChild;
+	} else {
+		if (!currentNode.rightChild.leftChild){//If the current node has a right (greater) child, which has only a right (greater) child
+			
+		}
+	}
+}
 
 
 
