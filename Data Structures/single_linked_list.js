@@ -48,7 +48,7 @@ SingleLinkedList.prototype.deleteNodeAt = function(position){
 	deletedNode = null,
 	previousNode = null;
 
-	if (position < 1 || position > length){
+	if (length === 0 || position < 1 || position > length){
 		throw Error("Requested node does not exist in this list");
 	}
 
