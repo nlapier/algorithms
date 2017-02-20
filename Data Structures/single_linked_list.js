@@ -23,6 +23,7 @@ SingleLinkedList.prototype.add = function(value){
 	}
 
 	this.listLength++;
+	
 	return node;
 }
 
@@ -34,9 +35,40 @@ SingleLinkedList.prototype.getNodeAt = function(postition){
 		throw Error("Requested node does not exist in this list");
 	}
 
-	for (let i = 1; i <= position; i++){
+	for (let i = 1; i < position; i++){
 		currentNode = currentNode.next;
 	}
 
 	return currentNode;
 } 
+
+SingleLinkedList.prototype.delete = function(position){
+	const length = this.listLength;
+	let currentNode = this.head,
+	deletedNode = null,
+	previousNode = null;
+
+	if (position < 1 || position > length){
+		throw Error("Requested node does not exist in this list");
+	}
+
+	if (position === 1){
+		this.head = currentNode.next;
+		deletedNode = currentNode;
+		currentNode = null;
+		this.listLength--;
+		return deletedNode;
+	}
+
+	for (let i = 2; i < position; i++){
+		previousNode = currentNode;
+		currentNode = currentNode.next;
+	}
+
+	previousNode.next = currentNode.next;
+	deletedNode = currentNode;
+	currentNode = null;
+	this.listLength--;
+
+	return deletedNode;
+}
