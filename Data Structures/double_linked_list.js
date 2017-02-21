@@ -73,3 +73,16 @@ DoubleLinkedList.prototype.deleteNodeAt = function(position){
 
 	return nodeToDelete;
 }
+
+/*Test area
+
+const testList = new DoubleLinkedList();
+
+testList.add("nat");
+testList.add("amparo");
+testList.add("misu");
+testList.add("tasja");
+console.log("delete: ", testList.deleteNodeAt(3))
+console.log("testList: ", testList)
+
+*/
