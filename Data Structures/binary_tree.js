@@ -60,26 +60,35 @@ BinaryTree.prototype.findWithParent = function(value){
 	return output;
 }
 
+BinaryTree.prototype.findSmallestGrandchild = function(node){
+	let smallestGrandchild = node;
+	while(smallestGrandchild.leftChild){
+		smallestGrandchild = smallestGrandchild.leftChild
+	}
+
+	return smallestGrandchild;
+}
+
 BinaryTree.prototype.remove = function(value){
 	const nodeObj = this.findWithParent(value),
-	currentNode = nodeObj.currentNode,
+	currentNode = nodeObj.returnCurrentNode(),
 	parent = nodeObj.parent,
 	side = nodeObj.parentSide;
+	let smallestGrandchild;
 
-	if (!currentNode.rightChild){
-		parent[side]] = currentNode.leftChild;
+	if (!currentNode.rightChild){//If the current node has no right child
+		parent[side] = currentNode.leftChild;
 	} else {
-		if (!currentNode.rightChild.leftChild){//If the current node has a right (greater) child, which in turn has only a right (greater) child
+		if (!currentNode.rightChild.leftChild){//If the current node has a right (greater) child, which in turn has no left (lesser) child
 			currentNode.rightChild.leftChild = currentNode.leftChild;
-			if (currentNode.rightChild > grandParent.value){
-				grandParent.rightChild = currentNode.rightChild;
-			} else {
-				grandParent.leftChild = currentNode.rightChild;
-			}
-		} else {
-
+			parent[side] = currentNode.rightChild;
+		} else {//If the current node has a right (greater) child, which in turn does have a left (lesser) child
+			smallestGrandchild = this.findSmallestGrandchild(currentNode);
+			currentNode.value = smallestGrandchild.value;
+			this.remove(smallestGrandchild.value)
 		}
 	}
+	return true;
 }
 
 
