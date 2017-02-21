@@ -38,18 +38,15 @@ BinaryTree.prototype.add = function(value){
 BinaryTree.prototype.findWithParent = function(value){
 	const output = {
 		parent: null,
-		currentNode: null
+		currentNode: this.root
 	}
-	let currentNode = this.root;
-
-	while (currentNode != null){
+	
+	while (output.currentNode != null){
 		output.parent = currentNode;
 		if (value >= currentNode.value){
-			currentNode = currentNode.rightChild;
-			output.childSide = "rightChild";
+			output.currentNode = currentNode.rightChild;
 		} else if (value < currentNode.value){
-			currentNode = currentNode.leftChild;
-			output.childSide = "leftChild";
+			output.currentNode = currentNode.leftChild;
 		} else {
 			break;
 		}
