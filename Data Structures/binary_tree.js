@@ -32,17 +32,18 @@ BinaryTree.prototype.add = function(value){
 	return node;
 };
 
-//GET THIS WORKING
 BinaryTree.prototype.findWithParent = function(value){
 	const output = {
 		parent: null,
-		childSide: null
+		childSide: null,
+		returnCurrentNode: function(){
+			return this.parent[this.childSide];
+		}
 	};
-	let currentNode: this.root;
+	let currentNode = this.root;
 
-
-	while (currentNode != null){
-		if (value >= currentNode.value){
+	while (currentNode !== null){
+		if (value > currentNode.value){
 			output.parent = currentNode;
 			output.childSide = "rightChild";
 			currentNode = output.parent[output.childSide];
