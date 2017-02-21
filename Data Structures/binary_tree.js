@@ -8,8 +8,6 @@ function Node(value){
 	this.rightChild = null;
 }
 
-
-
 BinaryTree.prototype.add = function(value){
 	const node = new Node(value);
 	let parent, childSide, currentNode;
@@ -22,7 +20,7 @@ BinaryTree.prototype.add = function(value){
 			parent = currentNode;
 			if (value >= currentNode.value){
 				currentNode = currentNode.rightChild;
-				childSide= "rightChild";
+				childSide = "rightChild";
 			} else {
 				currentNode = currentNode.leftChild;
 				childSide = "leftChild";
@@ -38,15 +36,21 @@ BinaryTree.prototype.add = function(value){
 BinaryTree.prototype.findWithParent = function(value){
 	const output = {
 		parent: null,
-		currentNode: this.root
-	}
-	
-	while (output.currentNode != null){
-		output.parent = currentNode;
+		childSide: null
+	};
+	let currentNode: this.root;
+
+
+	while (currentNode != null){
 		if (value >= currentNode.value){
-			output.currentNode = currentNode.rightChild;
+			output.parent = currentNode;
+			output.childSide = "rightChild";
+			currentNode = output.parent[output.childSide];
+
 		} else if (value < currentNode.value){
-			output.currentNode = currentNode.leftChild;
+			output.parent = currentNode;
+			output.childSide = "leftChild";
+			currentNode = output.parent[output.childSide];
 		} else {
 			break;
 		}
@@ -56,22 +60,13 @@ BinaryTree.prototype.findWithParent = function(value){
 }
 
 BinaryTree.prototype.remove = function(value){
-	let currentNode = this.root,
-	grandParent, parent, childSide;
-	while (currentNode.value != value){
-		grandParent = parent;
-		parent = currentNode;
-		if (value > currentNode.value){
-			currentNode = currentNode.rightChild;
-			childSide = "rightChild";
-		} else {
-			currentNode = currentNode.leftChild;
-			childSide = "leftChild";
-		}
-	}
+	const nodeObj = this.findWithParent(value),
+	currentNode = nodeObj.currentNode,
+	parent = nodeObj.parent,
+	side = nodeObj.parentSide;
 
 	if (!currentNode.rightChild){
-		parent[childSide] = currentNode.leftChild;
+		parent[side]] = currentNode.leftChild;
 	} else {
 		if (!currentNode.rightChild.leftChild){//If the current node has a right (greater) child, which in turn has only a right (greater) child
 			currentNode.rightChild.leftChild = currentNode.leftChild;
