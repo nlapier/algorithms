@@ -8,6 +8,11 @@ function Node(value){
 	this.rightChild = null;
 }
 
+BinaryTree.prototype.get = function(value){
+	const output = this.findWithParent(value).returnCurrentNode();
+	return output;
+};
+
 BinaryTree.prototype.add = function(value){
 	const node = new Node(value);
 	let parent, childSide, currentNode;
