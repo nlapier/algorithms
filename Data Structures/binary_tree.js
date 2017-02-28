@@ -62,14 +62,14 @@ BinaryTree.prototype.remove = function(value){
 BinaryTree.prototype.printInOrder = function(node){
 	let currentNode = node || this.root;
 	let values = [];
-	if(this.leftChild){
-		values.push(this.printInOrder(currentNode.leftChild));
+	if(currentNode.leftChild){
+		values.push(...this.printInOrder(currentNode.leftChild));
 	}
-	if (this.rightChild){
-		values.push(this.printInOrder(currentNode.rightChild));
+	values.push(currentNode.value);
+	if (currentNode.rightChild){
+		values.push(...this.printInOrder(currentNode.rightChild));
 	} 
-	values.push(this.printInOrder(currentNode.value));
-	return [...values];
+	return values;
 };
 
 //Supporting methods
