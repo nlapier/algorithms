@@ -59,6 +59,19 @@ BinaryTree.prototype.remove = function(value){
 	return true;
 };
 
+BinaryTree.prototype.printInOrder = function(node){
+	let currentNode = node || this.root;
+	let values = [];
+	if(currentNode.leftChild){
+		values.push(...this.printInOrder(currentNode.leftChild));
+	}
+	values.push(currentNode.value);
+	if (currentNode.rightChild){
+		values.push(...this.printInOrder(currentNode.rightChild));
+	} 
+	return values;
+};
+
 //Supporting methods
 BinaryTree.prototype.findWithParent = function(value){
 	const output = {

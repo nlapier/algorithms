@@ -23,3 +23,7 @@ function recursiveFib(num, start){
 
 	return recursiveFib(num-1, start) + recursiveFib(num-2, start);
 }
+
+function simpleRecursiveFib(num){
+  return num <= 1 ? num : simpleRecursiveFib(num-1) + simpleRecursiveFib(num-2)
+}
